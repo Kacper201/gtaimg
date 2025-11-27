@@ -5,6 +5,8 @@
 
 A C# library for reading and manipulating IMG archive files from GTA games (GTA III, Vice City, San Andreas).
 
+![Screenshot](assets/screenshot.png)
+
 ## Installation
 
 ```bash
