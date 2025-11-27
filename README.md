@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="GTA IMG Tool" width="128">
+</p>
+
 # GtaImg - C# Library for GTA IMG Archives
 
 [![Build and Test](https://github.com/vaibhavpandeyvpz/GtaImg/actions/workflows/build.yml/badge.svg)](https://github.com/vaibhavpandeyvpz/GtaImg/actions/workflows/build.yml)
@@ -32,16 +36,53 @@ The library targets multiple frameworks for maximum compatibility:
 ```
 ├── GtaImg.sln                          # Solution file
 ├── src/
-│   └── GtaImg/                         # Main library
-│       ├── GtaImg.csproj
-│       ├── IMGArchive.cs               # Main archive class
-│       ├── IMGEntry.cs                 # Entry structure
-│       └── IMGException.cs             # Custom exception
+│   ├── GtaImg/                         # Main library
+│   │   ├── GtaImg.csproj
+│   │   ├── IMGArchive.cs               # Main archive class
+│   │   ├── IMGEntry.cs                 # Entry structure
+│   │   └── IMGException.cs             # Custom exception
+│   └── GtaImgTool/                     # GUI application (WPF)
+│       ├── GtaImgTool.csproj
+│       └── ...
 └── tests/
     └── GtaImg.Tests/                   # NUnit tests
         ├── GtaImg.Tests.csproj
         └── IMGArchiveTests.cs
 ```
+
+## GtaImgTool - GUI Application
+
+A Windows desktop application for viewing and editing IMG archives with a modern dark theme.
+
+### Features
+
+- **Open/Create Archives**: Support for both VER1 (GTA III/VC) and VER2 (GTA SA) formats
+- **Browse Files**: View all entries with name, type, and size information
+- **Multi-Select**: Select multiple files using Ctrl+Click or Shift+Click
+- **Export Files**: Export selected files or all files to any folder
+- **Import Files**: Add files individually, multiple at once, or from a folder
+- **Delete Entries**: Remove selected entries from the archive
+- **Pack Archive**: Defragment the archive to reclaim unused space
+- **Drag & Drop**: Drag IMG files onto the window to open them
+- **Search/Filter**: Quickly find files by name
+
+### Running the GUI Tool
+
+```bash
+dotnet run --project src/GtaImgTool/GtaImgTool.csproj
+```
+
+### Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| Ctrl+N | New Archive |
+| Ctrl+O | Open Archive |
+| Ctrl+S | Save Archive |
+| Ctrl+W | Close Archive |
+| Ctrl+A | Select All |
+| Delete | Delete Selected |
+| F5 | Refresh |
 
 ## Features
 

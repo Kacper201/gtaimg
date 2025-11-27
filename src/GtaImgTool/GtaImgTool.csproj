@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>GtaImgTool</AssemblyName>
+    <RootNamespace>GtaImgTool</RootNamespace>
+    <Version>1.0.0</Version>
+    <Authors>Vaibhav Pandey</Authors>
+    <Description>A GUI tool for viewing and editing GTA IMG archive files.</Description>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GtaImg\GtaImg.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+    <Resource Include="logo.png" />
+  </ItemGroup>
+
+</Project>
+

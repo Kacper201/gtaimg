@@ -824,24 +824,36 @@ namespace GtaImg
 
         public void Dispose()
         {
-            Dispose(true);
+            Dispose(true, syncBeforeClose: true);
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        /// <summary>
+        /// Closes the archive without saving any pending changes.
+        /// </summary>
+        public void CloseWithoutSync()
+        {
+            Dispose(true, syncBeforeClose: false);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing, bool syncBeforeClose = true)
         {
             if (_disposed)
                 return;
 
             if (disposing)
             {
-                try
+                if (syncBeforeClose)
                 {
-                    Sync();
-                }
-                catch
-                {
-                    // Ignore sync errors during disposal
+                    try
+                    {
+                        Sync();
+                    }
+                    catch
+                    {
+                        // Ignore sync errors during disposal
+                    }
                 }
 
                 if (_ownsStreams)
@@ -1034,6 +1046,14 @@ namespace GtaImg
             }
 
             outStream.Flush();
+
+            // Truncate the header section to remove old entry data for VER1
+            // (VER1 reads until EOF, so we must truncate to avoid reading stale entries)
+            if (_version == IMGVersion.VER1)
+            {
+                long newLength = _entries.Count * EntrySize;
+                _dirStream.SetLength(newLength);
+            }
         }
 
         private uint GetDataEndOffset()
