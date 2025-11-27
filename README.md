@@ -1,76 +1,30 @@
-# GtaImg - C# Library for GTA IMG Archives
+# GTA IMG Tool
 
 [![Build and Test](https://github.com/vaibhavpandeyvpz/GtaImg/actions/workflows/build.yml/badge.svg)](https://github.com/vaibhavpandeyvpz/GtaImg/actions/workflows/build.yml)
-[![NuGet](https://img.shields.io/nuget/v/GtaImg.svg)](https://www.nuget.org/packages/GtaImg/)
+[![GitHub Release](https://img.shields.io/github/v/release/vaibhavpandeyvpz/GtaImg)](https://github.com/vaibhavpandeyvpz/GtaImg/releases/latest)
 
-A C# tool as well as library for reading and manipulating IMG archive files from GTA games (GTA III, Vice City, San Andreas).
+A modern Windows application for viewing and editing IMG archive files from classic GTA games (GTA III, Vice City, San Andreas).
 
 ![Screenshot](assets/screenshot.png)
 
-## Installation
+## Download
 
-```bash
-dotnet add package GtaImg
-```
+Get the latest release from the [Releases](https://github.com/vaibhavpandeyvpz/GtaImg/releases/latest) page.
 
-Or via Package Manager:
-```powershell
-Install-Package GtaImg
-```
+## Features
 
-## Supported Frameworks
+- **Open & Create Archives** - Support for both VER1 (GTA III/VC) and VER2 (GTA SA) formats
+- **Browse Files** - View all entries with name, type, size, and offset information
+- **Search & Filter** - Quickly find files by name
+- **Export Files** - Export selected files or all files to any folder
+- **Import Files** - Add files individually, multiple at once, or from an entire folder
+- **Replace & Rename** - In-place replacement and renaming of entries
+- **Delete Entries** - Remove selected entries from the archive
+- **Pack Archive** - Defragment the archive to reclaim unused space
+- **Drag & Drop** - Drag IMG files onto the window to open them
+- **Modern UI** - Clean dark theme with custom title bar
 
-The library targets multiple frameworks for maximum compatibility:
-
-| Framework | Version |
-|-----------|---------|
-| .NET Framework | 4.5.2, 4.7.2, 4.8.1 |
-| .NET Standard | 2.0 |
-| .NET Core | 3.1 |
-| .NET | 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 |
-
-## Project Structure
-
-```
-├── GtaImg.sln                          # Solution file
-├── src/
-│   ├── GtaImg/                         # Main library
-│   │   ├── GtaImg.csproj
-│   │   ├── IMGArchive.cs               # Main archive class
-│   │   ├── IMGEntry.cs                 # Entry structure
-│   │   └── IMGException.cs             # Custom exception
-│   └── GtaImgTool/                     # GUI application (WPF)
-│       ├── GtaImgTool.csproj
-│       └── ...
-└── tests/
-    └── GtaImg.Tests/                   # NUnit tests
-        ├── GtaImg.Tests.csproj
-        └── IMGArchiveTests.cs
-```
-
-## GtaImgTool - GUI Application
-
-A Windows desktop application for viewing and editing IMG archives with a modern dark theme.
-
-### Features
-
-- **Open/Create Archives**: Support for both VER1 (GTA III/VC) and VER2 (GTA SA) formats
-- **Browse Files**: View all entries with name, type, and size information
-- **Multi-Select**: Select multiple files using Ctrl+Click or Shift+Click
-- **Export Files**: Export selected files or all files to any folder
-- **Import Files**: Add files individually, multiple at once, or from a folder
-- **Delete Entries**: Remove selected entries from the archive
-- **Pack Archive**: Defragment the archive to reclaim unused space
-- **Drag & Drop**: Drag IMG files onto the window to open them
-- **Search/Filter**: Quickly find files by name
-
-### Running the GUI Tool
-
-```bash
-dotnet run --project src/GtaImgTool/GtaImgTool.csproj
-```
-
-### Keyboard Shortcuts
+## Keyboard Shortcuts
 
 | Shortcut | Action |
 |----------|--------|
@@ -82,39 +36,47 @@ dotnet run --project src/GtaImgTool/GtaImgTool.csproj
 | Delete | Delete Selected |
 | F5 | Refresh |
 
-## Features
+## Supported Formats
 
-- **Read/Write Support**: Open IMG archives in read-only or read-write mode
-- **VER1 Support**: GTA III and Vice City archives (.dir + .img file pairs)
-- **VER2 Support**: GTA San Andreas archives (single .img file)
-- **Entry Management**: Add, remove, rename, and extract entries
-- **File Import/Export**: Easy methods for importing files and extracting entries
+| Format | Games | File Structure |
+|--------|-------|----------------|
+| VER1 | GTA III, Vice City | `.dir` + `.img` file pair |
+| VER2 | San Andreas | Single `.img` file |
 
-## Building
+---
+
+## For Developers
+
+The underlying library **GtaImg** is also available as a NuGet package for developers who want to work with IMG archives programmatically.
+
+[![NuGet](https://img.shields.io/nuget/v/GtaImg.svg)](https://www.nuget.org/packages/GtaImg/)
+
+### Installation
 
 ```bash
-dotnet build
+dotnet add package GtaImg
 ```
 
-## Running Tests
-
-```bash
-dotnet test
+Or via Package Manager:
+```powershell
+Install-Package GtaImg
 ```
 
-Or with verbose output:
-```bash
-dotnet test --verbosity normal
-```
+### Supported Frameworks
 
-## Usage Examples
+| Framework | Version |
+|-----------|---------|
+| .NET Framework | 4.5.2, 4.7.2, 4.8.1 |
+| .NET Standard | 2.0 |
+| .NET Core | 3.1 |
+| .NET | 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 |
 
-### Opening an Archive (Read-Only)
+### Quick Start
 
 ```csharp
 using GtaImg;
 
-// Open a VER2 archive (GTA SA)
+// Open an archive
 using var archive = new IMGArchive("gta3.img");
 
 // List all entries
@@ -122,21 +84,33 @@ foreach (var entry in archive)
 {
     Console.WriteLine($"{entry.Name} - {entry.SizeInBytes} bytes");
 }
+
+// Extract a file
+archive.ExtractEntry("player.dff", @"C:\extracted\player.dff");
 ```
 
-### Opening an Archive (Read-Write)
+### Read-Write Operations
 
 ```csharp
 using GtaImg;
 
-// Open for reading and writing
+// Open for editing
 using var archive = new IMGArchive("gta3.img", IMGArchive.IMGMode.ReadWrite);
 
-// Make changes...
-archive.Sync(); // Save changes (also called automatically on Dispose)
+// Import a file
+archive.ImportFile(@"C:\mods\custom.dff", "custom.dff");
+
+// Remove an entry
+archive.RemoveEntry("unwanted.dff");
+
+// Rename an entry
+archive.RenameEntry("old_name.txd", "new_name.txd");
+
+// Save changes
+archive.Sync();
 ```
 
-### Creating a New Archive
+### Create New Archive
 
 ```csharp
 using GtaImg;
@@ -149,7 +123,10 @@ archive.ImportFile("mymodel.dff");
 archive.ImportFile("mytexture.txd");
 ```
 
-### Reading Entry Data
+### More Examples
+
+<details>
+<summary>Reading Entry Data</summary>
 
 ```csharp
 using GtaImg;
@@ -166,53 +143,12 @@ if (stream != null)
     // Process stream...
 }
 ```
+</details>
 
-### Extracting Files
+<details>
+<summary>Packing an Archive</summary>
 
-```csharp
-using GtaImg;
-
-using var archive = new IMGArchive("gta3.img");
-
-// Extract a single file
-archive.ExtractEntry("player.dff", @"C:\extracted\player.dff");
-
-// Extract all files
-archive.ExtractAll(@"C:\extracted\all_files");
-```
-
-### Adding/Importing Files
-
-```csharp
-using GtaImg;
-
-using var archive = new IMGArchive("gta3.img", IMGArchive.IMGMode.ReadWrite);
-
-// Import from file system
-archive.ImportFile(@"C:\mods\custom.dff", "custom.dff");
-
-// Or add from byte array
-byte[] myData = File.ReadAllBytes("myfile.txd");
-archive.AddEntry("myfile.txd", myData);
-```
-
-### Removing and Renaming Entries
-
-```csharp
-using GtaImg;
-
-using var archive = new IMGArchive("gta3.img", IMGArchive.IMGMode.ReadWrite);
-
-// Remove an entry
-archive.RemoveEntry("unwanted.dff");
-
-// Rename an entry
-archive.RenameEntry("old_name.txd", "new_name.txd");
-```
-
-### Packing an Archive
-
-After removing entries, the archive may have "holes" (unused space). Use `Pack()` to defragment:
+After removing entries, the archive may have unused space. Use `Pack()` to defragment:
 
 ```csharp
 using GtaImg;
@@ -227,29 +163,10 @@ archive.RemoveEntry("file2.dff");
 uint newSize = archive.Pack();
 Console.WriteLine($"Archive size is now {newSize} blocks");
 ```
+</details>
 
-### Checking Entry Existence
-
-```csharp
-using GtaImg;
-
-using var archive = new IMGArchive("gta3.img");
-
-if (archive.ContainsEntry("player.dff"))
-{
-    Console.WriteLine("Entry exists!");
-}
-
-// Get entry info
-var entry = archive.GetEntryByName("player.dff");
-if (entry.HasValue)
-{
-    Console.WriteLine($"Offset: {entry.Value.Offset} blocks");
-    Console.WriteLine($"Size: {entry.Value.Size} blocks ({entry.Value.SizeInBytes} bytes)");
-}
-```
-
-### Detecting Archive Version
+<details>
+<summary>Detecting Archive Version</summary>
 
 ```csharp
 using GtaImg;
@@ -262,20 +179,43 @@ Console.WriteLine(version == IMGArchive.IMGVersion.VER2 ? "GTA SA format" : "GTA
 using var archive = new IMGArchive("unknown.img");
 Console.WriteLine($"Archive version: {archive.Version}");
 ```
+</details>
 
-## IMG Format Overview
+---
 
-- **Block Size**: 2048 bytes
-- **VER1** (GTA III/VC): Two files - `.dir` (directory/header) and `.img` (data)
-- **VER2** (GTA SA): Single `.img` file with "VER2" magic header
-- **Entry Names**: Maximum 23 characters
+## Building from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/vaibhavpandeyvpz/GtaImg.git
+cd GtaImg
+
+# Build everything
+dotnet build
+
+# Run the GUI tool
+dotnet run --project src/GtaImgTool/GtaImgTool.csproj
+
+# Run tests
+dotnet test
+```
+
+### Project Structure
+
+```
+├── src/
+│   ├── GtaImg/           # Core library (NuGet package)
+│   └── GtaImgTool/       # GUI application (WPF)
+└── tests/
+    └── GtaImg.Tests/     # Unit tests
+```
 
 ## License
 
-This library is released under the [MIT License](LICENSE).
+This project is released under the [MIT License](LICENSE).
 
 ## Credits
 
-This library is a C# port of the original C++ **libgtaformats** library by David "Alemarius Nexus" Lerch.
+This project is based on a C# port of the original C++ **libgtaformats** library by David "Alemarius Nexus" Lerch.
 
 - **Original C++ Library**: [gtatools/libgtaformats](https://github.com/alemariusnexus/gtatools/tree/master/src/libgtaformats)
