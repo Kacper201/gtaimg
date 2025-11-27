@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net452;net472;net481;netstandard2.0;netcoreapp3.1;net5.0;net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    
+    <PackageId>GtaImg</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Vaibhav Pandey</Authors>
+    <Description>A library for reading and manipulating IMG archive files from GTA games (GTA3, Vice City, San Andreas).</Description>
+    <PackageTags>GTA;IMG;archive;modding;games</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591;CS8600;CS8602;CS8603;CS8618;CS8625</NoWarn>
+  </PropertyGroup>
+
+  <!-- Enable nullable for modern frameworks -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'net7.0' Or '$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net9.0' Or '$(TargetFramework)' == 'net10.0'">
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
