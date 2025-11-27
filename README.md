@@ -1,6 +1,20 @@
 # GtaImg - C# Library for GTA IMG Archives
 
+[![Build and Test](https://github.com/vaibhavpandeyvpz/GtaImg/actions/workflows/build.yml/badge.svg)](https://github.com/vaibhavpandeyvpz/GtaImg/actions/workflows/build.yml)
+[![NuGet](https://img.shields.io/nuget/v/GtaImg.svg)](https://www.nuget.org/packages/GtaImg/)
+
 A C# library for reading and manipulating IMG archive files from GTA games (GTA III, Vice City, San Andreas).
+
+## Installation
+
+```bash
+dotnet add package GtaImg
+```
+
+Or via Package Manager:
+```powershell
+Install-Package GtaImg
+```
 
 ## Supported Frameworks
 
