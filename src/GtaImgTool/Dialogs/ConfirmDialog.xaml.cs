@@ -24,16 +24,16 @@ namespace GtaImgTool.Dialogs
     {
         public bool? ThreeWayResult { get; private set; }
 
-        public ConfirmDialog(string title, string message, string? subMessage = null, 
+        public ConfirmDialog(string title, string message, string? subMessage = null,
             DialogIcon icon = DialogIcon.Question, string confirmText = "Yes", string cancelText = "Cancel",
             string? thirdText = null)
         {
             InitializeComponent();
-            
+
             TitleText.Text = title;
             Title = title;
             MessageText.Text = message;
-            
+
             if (!string.IsNullOrEmpty(subMessage))
             {
                 SubMessageText.Text = subMessage;

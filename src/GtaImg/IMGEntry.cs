@@ -68,7 +68,7 @@ namespace GtaImg
             {
                 if (NameBytes == null)
                     NameBytes = new byte[NameFieldSize];
-                
+
                 Array.Clear(NameBytes, 0, NameFieldSize);
 
                 if (!string.IsNullOrEmpty(value))

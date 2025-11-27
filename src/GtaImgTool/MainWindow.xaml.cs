@@ -118,9 +118,9 @@ namespace GtaImgTool
                     // Restore before dragging from maximized state
                     var mousePos = e.GetPosition(this);
                     var screenPos = PointToScreen(mousePos);
-                    
+
                     WindowState = WindowState.Normal;
-                    
+
                     // Position window so mouse is at same relative position
                     Left = screenPos.X - (ActualWidth / 2);
                     Top = screenPos.Y - 16;

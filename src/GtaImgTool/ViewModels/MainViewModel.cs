@@ -28,14 +28,14 @@ namespace GtaImgTool.ViewModels
         private bool _isLoading;
         private bool _hasUnsavedChanges;
         private string _searchFilter = string.Empty;
-        
+
         private Window? _ownerWindow;
-        
+
         public void SetOwnerWindow(Window window)
         {
             _ownerWindow = window;
         }
-        
+
         private Window OwnerWindow => _ownerWindow ?? Application.Current.MainWindow;
 
         public MainViewModel()
@@ -48,20 +48,20 @@ namespace GtaImgTool.ViewModels
             OpenArchiveCommand = new RelayCommand(OpenArchive);
             SaveArchiveCommand = new RelayCommand(SaveArchive, _ => HasUnsavedChanges);
             CloseArchiveCommand = new RelayCommand(CloseArchive, _ => IsArchiveOpen);
-            
+
             ImportFilesCommand = new RelayCommand(ImportFiles, _ => IsArchiveOpen);
             ImportFolderCommand = new RelayCommand(ImportFolder, _ => IsArchiveOpen);
-            
+
             ExportSelectedCommand = new RelayCommand(ExportSelected, _ => HasSelection);
             ExportAllCommand = new RelayCommand(ExportAll, _ => IsArchiveOpen && Entries.Count > 0);
-            
+
             DeleteSelectedCommand = new RelayCommand(DeleteSelected, _ => HasSelection);
             ReplaceEntryCommand = new RelayCommand(ReplaceEntry, _ => SelectedEntries.Count == 1);
             RenameEntryCommand = new RelayCommand(RenameEntry, _ => SelectedEntries.Count == 1);
-            
+
             SelectAllCommand = new RelayCommand(SelectAll, _ => IsArchiveOpen && Entries.Count > 0);
             RefreshCommand = new RelayCommand(Refresh, _ => IsArchiveOpen);
-            
+
             PackArchiveCommand = new RelayCommand(PackArchive, _ => IsArchiveOpen);
             ExitCommand = new RelayCommand(Exit);
         }
@@ -77,8 +77,8 @@ namespace GtaImgTool.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(SearchFilter))
                     return Entries;
-                
-                return Entries.Where(e => 
+
+                return Entries.Where(e =>
                     e.Name.Contains(SearchFilter, StringComparison.OrdinalIgnoreCase));
             }
         }
@@ -197,15 +197,15 @@ namespace GtaImgTool.ViewModels
                     "VER2",
                     "VER1");
 
-                var version = useVer2 
-                    ? IMGArchive.IMGVersion.VER2 
+                var version = useVer2
+                    ? IMGArchive.IMGVersion.VER2
                     : IMGArchive.IMGVersion.VER1;
 
                 CloseCurrentArchive();
 
                 _archive = IMGArchive.CreateArchive(dialog.FileName, version);
                 CurrentFilePath = dialog.FileName;
-                
+
                 RefreshEntries();
                 StatusMessage = $"Created new {(version == IMGArchive.IMGVersion.VER2 ? "VER2" : "VER1")} archive";
             }
@@ -383,7 +383,7 @@ namespace GtaImgTool.ViewModels
                     try
                     {
                         var fileName = Path.GetFileName(filePath);
-                        
+
                         // Check name length
                         if (fileName.Length > IMGEntry.MaxNameLength)
                         {
@@ -438,7 +438,7 @@ namespace GtaImgTool.ViewModels
                     MessageDialog.Show(
                         OwnerWindow,
                         "Import Complete",
-                        $"{message}\n\nErrors:\n{string.Join("\n", errors.Take(10))}" + 
+                        $"{message}\n\nErrors:\n{string.Join("\n", errors.Take(10))}" +
                         (errors.Count > 10 ? $"\n...and {errors.Count - 10} more" : ""),
                         DialogIcon.Warning);
                 }
@@ -590,7 +590,7 @@ namespace GtaImgTool.ViewModels
             if (_archive == null || SelectedEntries.Count != 1) return;
 
             var entry = SelectedEntries[0];
-            
+
             var dialog = new OpenFileDialog
             {
                 Title = $"Select replacement file for '{entry.Name}'",
@@ -634,7 +634,7 @@ namespace GtaImgTool.ViewModels
             if (_archive == null || SelectedEntries.Count != 1) return;
 
             var entry = SelectedEntries[0];
-            
+
             var renameDialog = new InputDialog();
             renameDialog.Owner = OwnerWindow;
             var newName = renameDialog.ShowDialog("Rename Entry", "Enter new name:", entry.Name);
@@ -777,7 +777,7 @@ namespace GtaImgTool.ViewModels
 
                 var newSize = _archive.Pack();
                 HasUnsavedChanges = true;
-                
+
                 StatusMessage = $"Archive packed to {newSize} blocks";
             }
             catch (Exception ex)

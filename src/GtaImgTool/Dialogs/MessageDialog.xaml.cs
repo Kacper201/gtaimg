@@ -17,7 +17,7 @@ namespace GtaImgTool.Dialogs
         public MessageDialog(string title, string message, DialogIcon icon = DialogIcon.Info)
         {
             InitializeComponent();
-            
+
             TitleText.Text = title;
             Title = title;
             MessageText.Text = message;

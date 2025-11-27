@@ -23,22 +23,22 @@ namespace GtaImg.Tests
         /// </summary>
         private static readonly object[] ArchiveTestCases = new object[]
         {
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto 3\models\gta3.img",
                 IMGArchive.IMGVersion.VER1,
                 3000,  // Minimum expected entries
                 "GTA III"
             },
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto Vice City\models\gta3.img",
                 IMGArchive.IMGVersion.VER1,
                 6000,
                 "GTA Vice City"
             },
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto San Andreas\models\gta3.img",
                 IMGArchive.IMGVersion.VER2,
                 16000,
@@ -65,7 +65,7 @@ namespace GtaImg.Tests
 
             using (IMGArchive archive = new IMGArchive(path))
             {
-                Assert.That(archive.EntryCount, Is.GreaterThanOrEqualTo(minEntries), 
+                Assert.That(archive.EntryCount, Is.GreaterThanOrEqualTo(minEntries),
                     string.Format("{0} should have at least {1} entries", gameName, minEntries));
             }
         }
@@ -77,7 +77,7 @@ namespace GtaImg.Tests
 
             IMGArchive.IMGVersion detectedVersion = IMGArchive.GuessIMGVersion(path);
 
-            Assert.That(detectedVersion, Is.EqualTo(expectedVersion), 
+            Assert.That(detectedVersion, Is.EqualTo(expectedVersion),
                 string.Format("{0} version detection should match", gameName));
         }
 
@@ -90,10 +90,10 @@ namespace GtaImg.Tests
             {
                 List<IMGEntry> entries = archive.Entries.ToList();
 
-                Assert.That(entries, Has.Count.EqualTo(archive.EntryCount), 
+                Assert.That(entries, Has.Count.EqualTo(archive.EntryCount),
                     string.Format("{0} enumeration count should match EntryCount", gameName));
-                
-                Assert.That(entries, Has.All.Matches<IMGEntry>(e => !string.IsNullOrEmpty(e.Name)), 
+
+                Assert.That(entries, Has.All.Matches<IMGEntry>(e => !string.IsNullOrEmpty(e.Name)),
                     "All entries should have non-empty names");
             }
         }
@@ -149,9 +149,9 @@ namespace GtaImg.Tests
                 Assert.That(upper, Is.Not.Null, "Should find PLAYER.DFF (uppercase)");
                 Assert.That(mixed, Is.Not.Null, "Should find Player.DFF (mixed case)");
 
-                Assert.That(lower.Value.Offset, Is.EqualTo(upper.Value.Offset), 
+                Assert.That(lower.Value.Offset, Is.EqualTo(upper.Value.Offset),
                     "All case variants should return same entry");
-                Assert.That(lower.Value.Offset, Is.EqualTo(mixed.Value.Offset), 
+                Assert.That(lower.Value.Offset, Is.EqualTo(mixed.Value.Offset),
                     "All case variants should return same entry");
             }
         }
@@ -195,7 +195,7 @@ namespace GtaImg.Tests
 
                 Assert.That(data, Is.Not.Null, "Should be able to read entry data");
                 Assert.That(data.Length, Is.GreaterThan(0), "Data should not be empty");
-                
+
                 // RenderWare DFF magic: 0x10 (clump chunk)
                 Assert.That(data[0], Is.EqualTo(0x10), "DFF should start with RenderWare clump magic (0x10)");
                 Assert.That(data[1], Is.EqualTo(0x00), "DFF header byte 2");
@@ -230,7 +230,7 @@ namespace GtaImg.Tests
 
                 Assert.That(data, Is.Not.Null, "Should be able to read entry data");
                 Assert.That(data.Length, Is.GreaterThan(0), "Data should not be empty");
-                
+
                 // RenderWare TXD magic: 0x16 (texture dictionary chunk)
                 Assert.That(data[0], Is.EqualTo(0x16), "TXD should start with RenderWare texture dictionary magic (0x16)");
                 Assert.That(data[1], Is.EqualTo(0x00), "TXD header byte 2");
@@ -253,7 +253,7 @@ namespace GtaImg.Tests
                 {
                     Assert.That(stream, Is.Not.Null, "OpenEntry should return a stream");
                     Assert.That(stream.CanRead, Is.True, "Stream should be readable");
-                    Assert.That(stream.Length, Is.EqualTo(entry.Value.SizeInBytes), 
+                    Assert.That(stream.Length, Is.EqualTo(entry.Value.SizeInBytes),
                         "Stream length should match entry size");
 
                     // Read and verify we get the right amount
@@ -265,7 +265,7 @@ namespace GtaImg.Tests
                         totalRead += read;
                     }
 
-                    Assert.That(totalRead, Is.EqualTo(entry.Value.SizeInBytes), 
+                    Assert.That(totalRead, Is.EqualTo(entry.Value.SizeInBytes),
                         "Should read exactly the entry size");
                 }
             }
@@ -302,7 +302,7 @@ namespace GtaImg.Tests
                     Assert.That(reportedSize, Is.LessThanOrEqualTo(actualFileSize + IMGArchive.BlockSize),
                         "Reported size should not exceed actual file size significantly");
                 }
-                
+
                 // Size should always be positive and reasonable
                 Assert.That(archive.Size, Is.GreaterThan(0), "Archive size should be positive");
                 Assert.That(archive.EntryCount, Is.GreaterThan(0), "Archive should have entries");
@@ -315,20 +315,20 @@ namespace GtaImg.Tests
     {
         private static readonly object[] FileTypeTestCases = new object[]
         {
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto 3\models\gta3.img",
                 new string[] { ".dff", ".txd" },
                 "GTA III"
             },
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto Vice City\models\gta3.img",
                 new string[] { ".dff", ".txd", ".col", ".ifp" },
                 "GTA Vice City"
             },
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto San Andreas\models\gta3.img",
                 new string[] { ".dff", ".txd", ".col", ".ifp", ".ipl" },
                 "GTA San Andreas"
@@ -354,7 +354,7 @@ namespace GtaImg.Tests
 
                 foreach (string expectedExt in expectedExtensions)
                 {
-                    Assert.That(extensions.Contains(expectedExt), Is.True, 
+                    Assert.That(extensions.Contains(expectedExt), Is.True,
                         string.Format("{0} should contain {1} files", gameName, expectedExt));
                 }
             }
@@ -369,22 +369,22 @@ namespace GtaImg.Tests
         /// </summary>
         private static readonly object[] VehicleTestCases = new object[]
         {
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto 3\models\gta3.img",
                 new string[] { "kuruma.dff", "taxi.dff", "police.dff", "infernus.dff" },
                 new string[] { "admiral.dff" }, // Admiral is VC/SA only
                 "GTA III"
             },
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto Vice City\models\gta3.img",
                 new string[] { "admiral.dff", "taxi.dff", "police.dff", "infernus.dff" },
                 new string[0],
                 "GTA Vice City"
             },
-            new object[] 
-            { 
+            new object[]
+            {
                 @"C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto San Andreas\models\gta3.img",
                 new string[] { "admiral.dff", "bullet.dff", "hydra.dff" },
                 new string[0],
@@ -401,13 +401,13 @@ namespace GtaImg.Tests
             {
                 foreach (string vehicle in expectedVehicles)
                 {
-                    Assert.That(archive.ContainsEntry(vehicle), Is.True, 
+                    Assert.That(archive.ContainsEntry(vehicle), Is.True,
                         string.Format("{0} should contain {1}", gameName, vehicle));
                 }
 
                 foreach (string vehicle in unexpectedVehicles)
                 {
-                    Assert.That(archive.ContainsEntry(vehicle), Is.False, 
+                    Assert.That(archive.ContainsEntry(vehicle), Is.False,
                         string.Format("{0} should NOT contain {1}", gameName, vehicle));
                 }
             }

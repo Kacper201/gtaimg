@@ -22,7 +22,7 @@ namespace GtaImgTool.ViewModels
         public uint Offset => _entry.Offset;
         public uint SizeBlocks => _entry.Size;
         public long SizeBytes => _entry.SizeInBytes;
-        
+
         public string SizeFormatted
         {
             get
