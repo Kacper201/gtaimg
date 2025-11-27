@@ -100,6 +100,58 @@ namespace GtaImgTool
         {
             SearchBorder.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333333")!);
         }
+
+        #region Custom Title Bar
+
+        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                // Double-click to maximize/restore
+                MaximizeButton_Click(sender, e);
+            }
+            else
+            {
+                // Single click to drag
+                if (WindowState == WindowState.Maximized)
+                {
+                    // Restore before dragging from maximized state
+                    var mousePos = e.GetPosition(this);
+                    var screenPos = PointToScreen(mousePos);
+                    
+                    WindowState = WindowState.Normal;
+                    
+                    // Position window so mouse is at same relative position
+                    Left = screenPos.X - (ActualWidth / 2);
+                    Top = screenPos.Y - 16;
+                }
+                DragMove();
+            }
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void MaximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ExitCommand.Execute(null);
+        }
+
+        #endregion
     }
 }
 

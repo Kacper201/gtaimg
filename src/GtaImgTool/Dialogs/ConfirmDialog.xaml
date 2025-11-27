@@ -11,7 +11,7 @@
         AllowsTransparency="True"
         Background="Transparent">
     
-    <Border Background="#111111" BorderBrush="#000000" BorderThickness="1" CornerRadius="8">
+    <Border Background="#111111" BorderBrush="#000000" BorderThickness="1" CornerRadius="0">
         <Border.Effect>
             <DropShadowEffect Color="Black" Opacity="0.5" BlurRadius="20" ShadowDepth="4" />
         </Border.Effect>
@@ -24,7 +24,7 @@
             </Grid.RowDefinitions>
 
             <!-- Title Bar -->
-            <Border Grid.Row="0" Background="#222222" CornerRadius="8,8,0,0" 
+            <Border Grid.Row="0" Background="#222222" CornerRadius="0" 
                     MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
                 <Grid>
                     <TextBlock x:Name="TitleText" Text="Confirm" FontWeight="SemiBold" FontSize="14"
@@ -35,7 +35,7 @@
                             FontSize="14" Cursor="Hand" Click="CloseButton_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="4">
+                                <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="0">
                                     <TextBlock x:Name="icon" Text="✕" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                                Foreground="#6d6e70" />
                                 </Border>
@@ -59,7 +59,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <!-- Icon -->
-                <Border Grid.Column="0" Width="48" Height="48" CornerRadius="24" 
+                <Border Grid.Column="0" Width="48" Height="48" CornerRadius="0" 
                         Background="#222222" Margin="0,0,16,0" VerticalAlignment="Top">
                     <fa:ImageAwesome x:Name="IconAwesome" Icon="Question" Width="24" Height="24"
                                      Foreground="#e94560" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -75,7 +75,7 @@
             </Grid>
 
             <!-- Buttons -->
-            <Border Grid.Row="2" Background="#222222" CornerRadius="0,0,8,8" Padding="16,12">
+            <Border Grid.Row="2" Background="#222222" CornerRadius="0" Padding="16,12">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="ThirdButton" Content="Cancel" Width="90" Height="34" Margin="0,0,8,0"
                             Background="#333333" Foreground="#f6f6f5" BorderThickness="0" Cursor="Hand"
@@ -83,7 +83,7 @@
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="border" Background="{TemplateBinding Background}" 
-                                        CornerRadius="4" Padding="16,8">
+                                        CornerRadius="0" Padding="16,8">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Border>
                                 <ControlTemplate.Triggers>
@@ -100,7 +100,7 @@
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="border" Background="{TemplateBinding Background}" 
-                                        CornerRadius="4" Padding="16,8">
+                                        CornerRadius="0" Padding="16,8">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Border>
                                 <ControlTemplate.Triggers>
@@ -117,7 +117,7 @@
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border x:Name="border" Background="{TemplateBinding Background}" 
-                                        CornerRadius="4" Padding="16,8">
+                                        CornerRadius="0" Padding="16,8">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Border>
                                 <ControlTemplate.Triggers>

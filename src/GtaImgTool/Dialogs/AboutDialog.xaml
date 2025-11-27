@@ -35,7 +35,7 @@
         </Style>
     </Window.Resources>
     
-    <Border Background="#111111" BorderBrush="#000000" BorderThickness="1" CornerRadius="8">
+    <Border Background="#111111" BorderBrush="#000000" BorderThickness="1" CornerRadius="0">
         <Border.Effect>
             <DropShadowEffect Color="Black" Opacity="0.5" BlurRadius="20" ShadowDepth="4" />
         </Border.Effect>
@@ -48,7 +48,7 @@
             </Grid.RowDefinitions>
 
             <!-- Title Bar -->
-            <Border Grid.Row="0" Background="#222222" CornerRadius="8,8,0,0" 
+            <Border Grid.Row="0" Background="#222222" CornerRadius="0" 
                     MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
                 <Grid>
                     <TextBlock Text="About" FontWeight="SemiBold" FontSize="14"
@@ -59,7 +59,7 @@
                             FontSize="14" Cursor="Hand" Click="CloseButton_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="4">
+                                <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="0">
                                     <TextBlock x:Name="icon" Text="✕" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                                Foreground="#6d6e70" />
                                 </Border>
@@ -77,9 +77,6 @@
 
             <!-- Content -->
             <StackPanel Grid.Row="1" Margin="24,20" HorizontalAlignment="Center">
-                <!-- App Logo -->
-                <Image Source="pack://application:,,,/logo.png" Width="96" Height="96" 
-                       HorizontalAlignment="Center" Margin="0,0,0,12" />
                 <TextBlock Text="GTA IMG Tool" FontSize="22" FontWeight="Bold" 
                            Foreground="#f6f6f5" HorizontalAlignment="Center" />
                 <TextBlock Text="Version 1.0.0" FontSize="12" 
@@ -108,14 +105,14 @@
             </StackPanel>
 
             <!-- Footer -->
-            <Border Grid.Row="2" Background="#222222" CornerRadius="0,0,8,8" Padding="16,12">
+            <Border Grid.Row="2" Background="#222222" CornerRadius="0" Padding="16,12">
                 <Button Content="Close" Width="90" Height="34" HorizontalAlignment="Center"
                         Background="#ff6a00" Foreground="White" BorderThickness="0" Cursor="Hand"
                         Click="CloseButton_Click" IsDefault="True">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border x:Name="border" Background="{TemplateBinding Background}" 
-                                    CornerRadius="4" Padding="16,8">
+                                    CornerRadius="0" Padding="16,8">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                             <ControlTemplate.Triggers>

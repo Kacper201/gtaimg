@@ -54,7 +54,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" Background="{TemplateBinding Background}" 
-                            CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            CornerRadius="0" Padding="{TemplateBinding Padding}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -82,7 +82,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" Background="{TemplateBinding Background}" 
                             BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            CornerRadius="0" Padding="{TemplateBinding Padding}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -109,7 +109,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" Background="{TemplateBinding Background}" 
-                            CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            CornerRadius="0" Padding="{TemplateBinding Padding}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -177,7 +177,7 @@
                                    AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
                                 <Border Background="{StaticResource SecondaryBrush}" 
                                         BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
-                                        CornerRadius="4" Padding="2" Margin="8">
+                                        CornerRadius="0" Padding="2" Margin="8">
                                     <Border.Effect>
                                         <DropShadowEffect Color="Black" Opacity="0.4" BlurRadius="12" ShadowDepth="4" />
                                     </Border.Effect>
@@ -309,7 +309,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Border x:Name="border" Background="#333333" CornerRadius="4" Margin="2" />
+                    <Border x:Name="border" Background="#333333" CornerRadius="0" Margin="2" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="border" Property="Background" Value="#444444" />
@@ -332,7 +332,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ScrollBar">
                     <Grid>
-                        <Border Background="#111111" CornerRadius="4" />
+                        <Border Background="#111111" CornerRadius="0" />
                         <Track x:Name="PART_Track" IsDirectionReversed="True">
                             <Track.Thumb>
                                 <Thumb Style="{StaticResource ScrollBarThumb}" />
@@ -350,7 +350,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="ScrollBar">
                             <Grid>
-                                <Border Background="#111111" CornerRadius="4" />
+                                <Border Background="#111111" CornerRadius="0" />
                                 <Track x:Name="PART_Track" IsDirectionReversed="False">
                                     <Track.Thumb>
                                         <Thumb Style="{StaticResource ScrollBarThumb}" />
@@ -431,7 +431,7 @@
                 <ControlTemplate TargetType="ContextMenu">
                     <Border x:Name="Border" Background="{StaticResource SecondaryBrush}" 
                             BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
-                            CornerRadius="4" Padding="2" Margin="8">
+                            CornerRadius="0" Padding="2" Margin="8">
                         <Border.Effect>
                             <DropShadowEffect Color="Black" Opacity="0.4" BlurRadius="12" ShadowDepth="4" />
                         </Border.Effect>
